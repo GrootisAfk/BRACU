@@ -1,0 +1,223 @@
+# NAME : Shabab Abdullah
+# STUDENT ID : 20301005
+# SECTION : 04
+# CSE220 LAB ASSIGNMENT 01
+
+
+### Task 01 ###
+### Shift Left k Cells  ###
+
+def shiftLeft(source, k):
+    x = 0
+    for i in range(k, len(source)):
+        source[x] = source[i]
+        x += 1
+    for i in range(k, len(source)):
+        source[i] = 0
+    print(source)
+
+
+source = [10, 20, 30, 40, 50, 60]
+
+shiftLeft(source, 3)
+
+
+### Task 02 ###
+### Rotate Left k cells ###
+
+
+def rotateLeft(source, k):
+    for i in range(k):
+        x = 0
+        z = source[0]
+        for j in range(1, len(source)):
+            source[x] = source[j]
+            x += 1
+
+        source[len(source) - 1] = z
+
+    print(source)
+
+
+source = [10, 20, 30, 40, 50, 60]
+rotateLeft(source, 3)
+
+
+### Task 03 ###
+### Shift Right k Cells ###
+
+def shiftRight(source, k):
+    for i in range(0, k):
+        for j in range((len(source) - 1), 0, -1):
+            source[j] = source[j - 1]
+        source[i] = 0
+    print(source)
+
+
+source = [10, 20, 30, 40, 50, 60]
+shiftRight(source, 3)
+
+
+### Task 04 ###
+### Rotate Right k cells ###
+
+
+def rotateRight(source, k):
+    x = []
+    i = len(source) - k
+
+    while i <= len(source) - 1:
+        x = x + [source[i]]
+        i = i + 1
+
+    for a in range(len(source) - 1, 0, -1):
+        source[a] = source[a - k]
+    j = 0
+
+    while j < len(x):
+        source[j] = x[j]
+        j = j + 1
+    print(source)
+
+
+source = [10, 20, 30, 40, 50, 60]
+rotateRight(source, 3)
+
+
+### Task 05 ###
+### Remove an element from an array ###
+
+
+def remove(source, size, idx):
+    for i in range(idx, len(source)):
+
+        if i != (len(source) - 1):
+            source[i] = source[i + 1]
+        if i == (len(source) - 1):
+            source[i] = 0
+    print(source)
+
+
+source = [10, 20, 30, 40, 50, 0, 0]
+remove(source, 5, 2)
+
+
+### Task 06 ###
+### Remove all occurrences of a particular element from an array ###
+
+
+def removeAll(source, size, element):
+    j = 0
+    while j <= size:
+        if source[j] == element:
+            for i in range(j, len(source) - 1):
+                source[i] = source[i + 1]
+            j = j - 1
+        j = j + 1
+
+
+source = [10, 2, 30, 2, 50, 2, 2, 0, 0]
+removeAll(source, 7, 2)
+print(source)
+
+
+### Task 07 ###
+### Splitting an Array ###
+
+
+def balance(x):
+    first_sum = 0
+    second_sum = 0
+
+    for i in range(len(x)):
+        for j in range(0, i):
+            first_sum = first_sum + x[j]
+
+        for k in range(i, len(x)):
+            second_sum = second_sum + x[k]
+
+            if first_sum == second_sum:
+                return True
+
+            first_sum = 0
+            second_sum = 0
+
+    return False
+
+
+x = [1, 1, 1, 2, 1]
+print(balance(x))
+
+
+### Task 08 ###
+### Array series ###
+
+
+def arraySeries(n):
+    x = [0] * n * n
+
+    for group in range(1, n + 1):
+
+        for value in range(1, group + 1):
+            index = group * n - value
+            x[index] = value
+
+    print(x)
+
+
+arraySeries(3)
+
+
+### Task 09 ###
+### Max Bunch Count ###
+
+
+def Max_Bunch_Count(array):
+    x = []
+    count = 1
+    for i in array:
+        if len(x) == 0:
+            x = x + [i]
+        elif len(x) > 0:
+            if x[len(x) - 1] == i:
+                count = count + 1
+            else:
+                x = x + [i]
+                count = 1
+    print(count)
+
+
+a = [1, 1, 2, 2, 1, 1, 1, 1]
+Max_Bunch_Count(a)
+
+
+### Task 10 ###
+### Repetition ###
+
+
+def repetition(input_array):
+    lst1 = []
+    lst2 = []
+    for i in range(len(input_array)):
+        if Input[i] not in lst1:
+            lst1 = lst1 + [Input[i]]
+            lst2 = lst2 + [0]
+
+    for j in range(len(lst1)):
+        z = 0
+        for x in range(len(Input)):
+            if lst1[j] == Input[x]:
+                z = z + 1
+                lst2[j] = z
+    bol = ''
+    for k in range(len(lst2)):
+        if lst2[k] > 1 and lst2[k] in lst2[k + 1:len(lst2):1]:
+            bol = 'True'
+    if bol != 'True':
+        return False
+    else:
+        return True
+
+
+Input = [3, 4, 6, 3, 4, 7, 4, 6, 8, 6, 6]
+print(repetition(Input))

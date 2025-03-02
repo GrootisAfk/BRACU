@@ -1,0 +1,183 @@
+# NAME : Shabab Abdullah
+# STUDENT ID : 20301005
+# SECTION : 04
+# CSE220 LAB ASSIGNMENT 04
+
+
+class Node:
+    def __init__(self, e, n, p):
+        self.element = e
+        self.next = n
+        self.prev = p
+
+
+class DoublyList:
+
+    def __init__(self, a):
+        #  Design the constructor based on data type of a. If 'a' is built in python list then
+        #  Creates a linked list using the values from the given array.
+        self.head = Node(a[0], None, None)
+        first = self.head
+        for i in range(1, len(a)):
+            last = Node(a[i], None, None)
+            last.prev = first
+            first.next = last
+            first = first.next
+
+    # Counts the number of Nodes in the list
+    def countNode(self):
+        n = self.head
+        count = 0
+        while n is not None:
+            count = count + 1
+            n = n.next
+        return count
+
+    # prints the elements in the list
+    def forwardprint(self):
+        n = self.head
+        while n is not None:
+            if n.next is not None:
+                print(n.element, end=",")
+                n = n.next
+            else:
+                print(n.element, end=".\n")
+                n = n.next
+
+    # prints the elements in the list backward
+    def backwardprint(self):
+        n = self.head
+        while n.next is not None:
+            n = n.next
+        while n is not None:
+            if n.prev != None:
+                print(n.element, end=",")
+                n = n.prev
+            else:
+                print(n.element, end=".\n")
+                n = n.prev
+
+    # returns the reference of the at the given index. For invalid index return None.
+    def nodeAt(self, idx):
+        n = self.head
+        for i in range(idx):
+            n = n.next
+        return n
+
+    # returns the index of the containing the given element. if the element does not exist in the List, return -1.
+    def indexOf(self, elem):
+        var = - 1
+        count = 0
+        n = self.head
+        while n is not None:
+            if n.element == elem:
+                var = count
+                break
+            else:
+                n = n.next
+                count = count + 1
+
+    # inserts containing the given element at the given index Check validity of index.
+    def insert(self, elem, idx):
+        count = self.countNode()
+        if idx == 0:
+            a = Node(elem, None, None)
+            n = self.head
+            a.next = n
+            n.prev = a
+            self.head = a
+
+        elif 0 < idx < count:
+            a = self.nodeAt(idx)
+            b = a.prev
+            x = Node(elem, None, None)
+            x.next = a
+            a.prev = x
+            b.next = x
+            x.prev = b
+        elif idx == count:
+            b = self.nodeAt(idx - 1)
+            x = Node(elem, None, None)
+            b.next = x
+            x.prev = b
+
+    # removes at the given index. returns element of the removed node. Check validity of index. return None if index is invalid.
+
+    def remove(self, idx):
+        count = self.countNode()
+        if idx == 0:
+            temp = self.head.next
+            n = self.head
+            temp.prev = None
+            self.head = temp
+            return str(n.element)
+        elif 0 < idx < count - 1:
+            x = self.nodeAt(idx)
+            y = x.prev
+            z = x.next
+            y.next = z
+            z.prev = y
+            return str(x.element)
+
+        elif idx == count - 1:
+            x = self.nodeAt(idx)
+            b = x.prev
+            b.next = None
+            return str(x.element)
+
+
+print("///  Test 01  ///")
+a1 = [10, 20, 30, 40]
+h1 = DoublyList(a1)  # Creates a linked list using the values from the array
+
+h1.forwardprint()  # This should print: 10,20,30,40.
+h1.backwardprint()  # This should print: 40,30,20,10.
+print(h1.countNode())  # This should print: 4
+
+print("///  Test 02  ///")
+# returns the reference of the at the given index. For invalid idx return None.
+myNode = h1.nodeAt(2)
+print(myNode.element)  # This should print: 30. In case of invalid index This will print "index error"
+
+print("///  Test 03  ///")
+# returns the index of the containing the given element. if the element does not exist in the List, return -1.
+index = h1.indexOf(40)
+print(index)  # This should print: 3. In case of element that
+# doesn't exists in the list this will print -1.
+
+print("///  Test 04  ///")
+
+a2 = [10, 20, 30, 40]
+h2 = DoublyList(a2)  # uses the  constructor
+h2.forwardprint()  # This should print: 10,20,30,40.
+
+# inserts containing the given element at the given index. Check validity of index.
+h2.insert(85, 0)
+h2.forwardprint()  # This should print: 85,10,20,30,40.
+h2.backwardprint()  # This should print: 40,30,20,10,85.
+
+print()
+h2.insert(95, 3)
+h2.forwardprint()  # This should print: 85,10,20,95,30,40.
+h2.backwardprint()  # This should print: 40,30,95,20,10,80.
+
+print()
+h2.insert(75, 6)
+h2.forwardprint()  # This should print: 85,10,20,95,30,40,75.
+h2.backwardprint()  # This should print: 75,40,30,95,20,10,85.
+
+print("///  Test 05  ///")
+a3 = [10, 20, 30, 40, 50, 60, 70]
+h3 = DoublyList(a3)  # uses the constructor
+h3.forwardprint()  # This should print: 10,20,30,40,50,60,70.
+
+# removes at the given index. returns element of the removed node. Check validity of index. return None if index is invalid.
+print("Removed element: " + h3.remove(0))  # This should print: Removed element: 10
+h3.forwardprint()  # This should print: 20,30,40,50,60,70.
+h3.backwardprint()  # This should print: 70,60,50,40,30,20.
+print("Removed element: " + h3.remove(3))  # This should print: Removed element: 50
+h3.forwardprint()  # This should print: 20,30,40,60,70.
+h3.backwardprint()  # This should print: 70,60,40,30,20.
+print("Removed element: " + h3.remove(4))  # This should print: Removed element: 70
+h3.forwardprint()  # This should print: 20,30,40,60.
+h3.backwardprint()  # This should print: 60,40,30,20.

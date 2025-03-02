@@ -1,0 +1,202 @@
+# NAME : Shabab Abdullah
+# STUDENT ID : 20301005
+# SECTION : 04
+# CSE220 LAB ASSIGNMENT 05
+
+# Task 01 #
+
+
+class Stack:
+    def __init__(self):
+        self.lst = []
+        self.idx = -1
+
+    def push(self, element):
+        self.lst = self.lst + [element]
+        self.idx = self.idx + 1
+
+    def peek(self):
+        if not self.lst:
+            return "Empty List"
+        else:
+            return self.lst[self.idx]
+
+    def pop(self):
+        if not self.lst:
+            return "Empty List"
+        else:
+            last_element = self.lst[self.idx]
+            new_list = []
+            for i in range(self.idx):
+                new_list = new_list + [self.lst[i]]
+            self.lst = new_list
+            self.idx = self.idx - 1
+            return last_element
+
+    def balancing(self, enter):
+        x = False
+        string = " "
+        count = 1
+        for i in enter:
+            if i == "(":
+                self.push(i)
+            elif i == "{":
+                self.push(i)
+            elif i == "[":
+                self.push(i)
+            elif i == ")":
+                if self.peek() != "(":
+                    x = True
+                    string = ")"
+                    break
+                else:
+                    self.pop()
+            elif i == "}":
+                if self.peek() != "{":
+                    x = True
+                    string = "}"
+                    break
+                else:
+                    self.pop()
+            elif i == "]":
+                if self.peek() != "[":
+                    x = True
+                    string = "]"
+                    break
+            count = count + 1
+
+        print(enter)
+        if self.peek() != 'Empty List' or x == True:
+            print('This expression is NOT correct.')
+        if self.peek() == 'Empty List' and x == True:
+            print("Error at character # {}. '{}'- not opened.".format(count, string))
+        elif self.peek() != "Empty List":
+            count = 1
+            for i in enter:
+                if i == self.peek():
+                    break
+                else:
+                    count = count + 1
+            print("Error at character # {}. '{}'- not closed.".format(count, self.peek()))
+
+        elif self.peek() == 'Empty List' and x == False:
+            print('This expression is correct.')
+
+
+print("===============TASK 01===============")
+input_1 = "1+2*(3/4)"
+input_2 = "1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"
+input_3 = "1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14"
+input_4 = "1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"
+
+a = Stack()
+b = Stack()
+c = Stack()
+d = Stack()
+
+a.balancing(input_1)
+b.balancing(input_2)
+c.balancing(input_3)
+d.balancing(input_4)
+
+
+# Task 02 #
+
+class Node:
+    def __init__(self, element, nxt):
+        self.element = element
+        self.next = nxt
+
+
+class NEW_Stack:
+    def __init__(self):
+        self.head = None
+
+    def push(self, element):
+        if self.head is None:
+            self.head = Node(element, None)
+        else:
+            new_node = Node(element, None)
+            new_node.next = self.head
+            self.head = new_node
+
+    def peek(self):
+        if self.head is None:
+            return 'Empty List'
+        else:
+            return self.head.element
+
+    def pop(self):
+        temp = self.head
+        self.head = self.head.next
+        temp.value = None
+        temp.next = None
+
+    def balancing(self, enter):
+        x = False
+        string = ''
+        index: int = 1
+        for i in enter:
+            if i == '(':
+                self.push(i)
+            elif i == '{':
+                self.push(i)
+            elif i == '[':
+                self.push(i)
+            if i == ')':
+                if self.peek() == '(':
+                    self.pop()
+                else:
+                    x = True
+                    string = ')'
+                    break
+            elif i == '}':
+                if self.peek() == '{':
+                    self.pop()
+                else:
+                    x = True
+                    string = '}'
+                    break
+            elif i == ']':
+                if self.peek() == '[':
+                    self.pop()
+                else:
+                    x = True
+                    string = ']'
+                    break
+            index += 1
+        print(enter)
+
+        if self.peek() != 'Empty List' or x == True:
+            print('This expression is NOT correct.')
+        if self.peek() == 'Empty List' and x == True:
+            print("Error at character # {}. '{}'- not opened.".format(index, string))
+        elif self.peek() != 'Empty List':
+            index1 = 1
+            for j in enter:
+                if j == self.peek():
+                    break
+                else:
+                    index1 += 1
+            print("Error at character # {}. '{}'- not closed.".format(index1, self.peek()))
+
+        elif self.peek() == 'Empty List' and x == False:
+            print('This expression is correct.')
+
+
+print("===============TASK 02===============")
+
+input_11 = "1+2*(3/4)"
+input_22 = "1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"
+input_33 = "1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14"
+input_44 = "1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"
+
+E = NEW_Stack()
+F = NEW_Stack()
+G = NEW_Stack()
+H = NEW_Stack()
+
+E.balancing(input_11)
+F.balancing(input_22)
+G.balancing(input_33)
+H.balancing(input_44)

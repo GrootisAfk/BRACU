@@ -1,0 +1,379 @@
+#TASK_1
+
+x=input("Enter a word:")
+
+up_case = 0
+lower_case = 0
+
+for i in x:
+    if i.isupper():
+        up_case = up_case + 1
+    else:
+        lower_case = lower_case + 1
+        
+if (up_case > lower_case):
+    print(x.upper())
+else:
+    print(x.lower())
+    
+    
+    
+    
+    
+#Task 2
+x = input("Enter anything you want: ")
+num = False
+word = False
+
+for i in range(len(x)):
+    if (x[i]>='0' and x[i]<='9'):
+        num = True
+    else:
+        word = True
+
+if (num==True and word==True):
+    print("MIXED")
+elif(num==True):
+    print("NUMBER")
+elif( word==True):
+    print("WORD")
+    
+    
+    
+#TASK 3
+x = input("Enter a word:")
+y = ""
+z = len(x)
+for i in range(0,z):
+    if x[i].isupper():
+        for j in range(i+1,z):
+            if x[j].isupper():
+                y = x[i+1:j]
+if y=="":
+    print("BLANK")
+else:
+    print(y)
+    
+    
+    
+#Task 4
+x = input("Enter a sentence:")
+y = "too good"
+if y in x:
+    print(x.replace("too good","excellent"))
+else:
+    print(x)
+    
+    
+    
+#Task 5
+x = input("Enter first word:")
+y = input("Enter second word:")
+a = " "
+b = " "
+
+for i in x:
+    if i in y:
+        a +=i
+for j in y:
+    if j in x:
+        b +=j
+print(a + b)
+
+if a == " " or b == " ":
+    print("Nothing in common.")
+    
+    
+    
+#Task 6
+usis_pass = input('enter a new password: ')
+upper_case = 0
+lower_case = 0
+digits = 0
+special_char = 0
+password = []
+
+for char in range(len(usis_pass)):
+    if ord(usis_pass[char]) >= 65 and ord(usis_pass[char]) <= 90:
+        upper_case = upper_case + 1
+    elif ord(usis_pass[char]) >= 97 and ord(usis_pass[char]) <= 122:
+        lower_case = lower_case + 1
+    elif ord(usis_pass[char]) >= 48 and ord(usis_pass[char]) <= 57:
+        digits = digits + 1
+    elif usis_pass[char] == "_" or usis_pass[char] == "@" or usis_pass[char] == "#" or usis_pass[char] == "$":
+        special_char = special_char + 1
+
+if special_char != 0 and lower_case != 0 and digits != 0 and upper_case != 0:
+    print("OK")
+if upper_case == 0:
+    password.append("Uppercase character missing ")
+if lower_case == 0:
+    password.append("Lowercase character missing ")
+if digits == 0:
+    password.append("Digit missing ")
+if special_char == 0:
+    password.append("Special character missing")
+
+for char in range(len(password)):
+    if len(password) == 1:
+        print(password[char])
+    elif len(password) > 1:
+        print(password[char], end=",")
+        
+        
+        
+        
+#Task 7
+list_one = []
+while True :
+    x = input("Enter a number:")
+    if x == "STOP" :
+        break
+    else:
+        x = int(x)
+        list_one.append(x)
+list_two = []
+for i in list_one:
+    list_two.append(i)
+
+for i in list_two:
+    y = 0
+    for z in list_one:
+        if i == z:
+            y = y + 1
+
+    print(i,":" , y ,"times")
+    
+    
+    
+    
+#Task 8
+h_sum = 0
+
+for i in range(int(input("Enter Numbers:"))):
+    N_list = [int(i) for i in input().split()]
+    t_sum = 0
+
+    for j in range (len(N_list)):
+        t_sum = t_sum + N_list[j]
+
+    if t_sum > h_sum:
+        h_sum = t_sum
+        n_lists = N_list
+print(h_sum)
+print(n_lists)
+
+
+#Task 9
+x = input("Enter a list:").split()
+y = input("Enter another list:").split()
+theList = []
+
+for i in range(len(x)):
+    for j in range(len(y)):
+        k = int(x[i])*int(y[j])
+        if k not in theList:
+            theList.append(k)
+print(theList)
+
+
+
+
+#Task 10
+inp = input("Input a list:")
+while (inp != "STOP"):
+    nums = list(map(int, inp.split()))
+    abs_diff = [abs(nums[i] - nums[i + 1]) for i in range(len(nums) - 1)]
+
+    li = []
+    for i in range(1, len(nums)):
+        li.append(i)
+
+    count = 0
+    for ele in abs_diff:
+        if ele in li:
+            count += 1
+
+    if count == len(li):
+        print("UB Jumper")
+        inp = input()
+    else:
+        print("Not UB Jumper")
+        inp = input()
+        
+        
+
+
+
+#Task 11
+x = input("Enter a string:")
+lst = []
+
+for index in x:
+    lst.append(index)
+lst.sort()
+
+for i in range(len(lst)):
+    if lst[i].islower():
+        print(lst[i], end="")
+
+for i in range(len(lst)):
+    if lst[i].isupper():
+        print(lst[i], end="")
+
+for i in range(len(lst)):
+    if lst[i].isdigit():
+        number = int(lst[i])
+        if number % 2 == 1:
+            print(lst[i], end="")
+
+for i in range(len(lst)):
+    if lst[i].isdigit():
+        number = int(lst[i])
+        if number % 2 == 0:
+            print(lst[i], end="")
+            
+            
+            
+            
+#Task 12
+x = [int(index) for index in input().split()]
+y = [int(index) for index in input().split()]
+z_1 = x[0]
+z_2 = 0
+
+a = x[0]
+b = x[1]
+
+for i in y:
+    if 5 - i >=b:
+        z_2+=1
+num = z_2 // 3
+
+print(num)
+
+
+
+
+#Task 13
+d_one= {'a': 100, 'b': 100, 'c': 200, 'd': 300 }
+d_two= {'a': 300, 'b': 200, 'd': 400, 'e': 200}
+
+updated_dict = dict(d_one)
+updated_dict.update(d_two)
+
+for k,val in d_one.items():
+    for k_one,val_one in d_two.items():
+        if k == k_one :
+            updated_dict[k]=(val +val_one)
+print(updated_dict)
+
+d= {}
+for index , char in updated_dict.items():
+    if char not in d.values():
+        d[index] = char 
+        
+print("Values:",tuple(sorted(d.values())))
+
+
+
+
+
+
+#Task 14
+x = {}
+y = 1
+
+while y > 0:
+    number = input("Input number:")
+    if number == "STOP":
+        break
+    else:
+        if number in x:
+            x[number] += 1
+        else:
+            x[number] = 1
+        y += 1
+
+for counter in x.keys():
+    print(counter + "-" + str(x[y]) + "times")
+    
+    
+    
+#Task 15
+
+x = {"key1": "value1", "key2": "value2", "key3": "value1"}
+y = []
+
+for key, val in x.items():
+    if val not in y:
+        y.append(val)
+
+z = {}
+
+for value in y:
+    list1: list[str] =[]
+    for key, val in x.items():
+        if value == val:
+            list1.append(key)
+            z[value] = list1
+print(z)
+
+
+
+
+
+#Task 16
+x = input('Enter a word: ')
+y = input('Enter an another word: ')
+z_1 = {}
+z_2 = {}
+
+for i in x:
+    if i not in z_1.keys():
+        z_1[i] = 1
+    else:
+        z_1[i] += 1
+
+for i in y:
+    if i not in z_2.keys():
+        z_2[i] = 1
+    else:
+        z_2[i] += 1
+
+z = True
+for key in z_1.keys():
+    if key not in z_2.keys() or z_1[key] != z_2[key]:
+        print('Those strings are not anagrams.')
+        z = False
+        break
+if z == True:
+    print('Those strings are anagrams.')
+    
+    
+    
+#Task 17
+x = input("Enter a message: ")
+y = ""
+
+for i in range(len(x)):
+    if ord(x[i]) >= 97 and ord(x[i]) <= 122:
+        y = y + chr(ord(x[i]) - 32)
+    else:
+        y = y + x[i]
+
+z = ""
+total = {1: [".", ",", "?", "!", ':'], 2: ["A", "B", "C"], 3: ["D", "E", "F"], 4: ["G", "H", 'I'], 5: ["J", "K", "L"],
+         6: ["M", "N", "O"], 7: ["P", "Q", "R", "S"], 8: ["T", "U", "V"], 9: ["W", "X", "Y", "Z"], 0: [" "]}
+
+for i in range(len(y)):
+    for j, key in total.items():
+        if y[i] in key:
+            for count in range(len(key)):
+                if y[i] == key[count]:
+                    k = len(key[:count + 1])
+                    for l in range(k):
+                        z = z + str(j)
+
+print(z)    
+        

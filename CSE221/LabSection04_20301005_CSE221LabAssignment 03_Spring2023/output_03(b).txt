@@ -1,0 +1,13 @@
+Patient ABC with priority 3 has been added to the queue
+Patient EWQ with priority 3 has been added to the queue
+Patient SDF with priority 2 has been added to the queue
+Patient KLM with priority 1 has been added to the queue
+Patient KLM with priority 1 has seen the doctor
+Patient SDF with priority 2 has seen the doctor
+Patient FDS with priority 1 has been added to the queue
+Patient OPN with priority 3 has been added to the queue
+Patient TYU with priority 3 has been added to the queue
+Patient FDS with priority 1 has seen the doctor
+Patient XCV with priority 2 has been added to the queue
+Patient XCV with priority 2 has seen the doctor
+Patient ABC with priority 3 has seen the doctor

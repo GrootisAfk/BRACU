@@ -1,0 +1,120 @@
+# NAME : Shabab Abdullah
+# STUDENT ID : 20301005
+# SECTION : 04
+# CSE220 LAB ASSIGNMENT 07
+
+
+# Task 1 on Key index Searching & Sorting
+
+class KeyIndex:
+    def __init__(self, a):
+
+        min_value = a[0]
+        max_value = a[0]
+
+        original_a = [0] * len(a)
+
+        for i in range(len(a)):
+            original_a[i] = a[i]
+
+        for i in a:
+            if i > max_value:
+                max_value = i
+            elif i < min_value:
+                min_value = i
+
+        if min_value < 0:
+            x = min_value * -1
+            max_value = max_value + x
+            for i in range(len(a)):
+                a[i] = (a[i]) + x
+        else:
+            pass
+
+        self.k = [0] * (max_value + 1)
+        self.instVar = [a, original_a, min_value, max_value]
+
+        for j in range(len(a)):
+            self.k[a[j]] = (self.k[a[j]]) + 1
+
+    def searching(self, value):
+
+        minimum = self.instVar[2]
+        maximum = self.instVar[3]
+
+        if minimum < 0:
+            x = minimum * -1
+            value = value + x
+
+        if value <= maximum:
+            if self.k[value] != 0:
+                return True
+
+            else:
+                return False
+
+        return False
+
+    def KeyIndexSorting(self):
+
+        a = self.instVar[0]
+        self.instVar[1]
+        minimum = self.instVar[2]
+
+        output = [0] * len(a)
+
+        for i in range(1, len(self.k)):
+            self.k[i] = self.k[i] + self.k[i - 1]
+
+        for i in range(len(a) - 1, -1, -1):
+            var = (self.k[a[i]]) = (self.k[a[i]]) - 1
+
+            if minimum < 0:
+                output[var] = (a[i]) + minimum
+            else:
+                output[var] = a[i]
+
+        return output
+
+
+# Driver Code
+arr = [1, -2, 3, 9, 5, 4, 2]
+
+test = KeyIndex(arr)
+print(test.searching(5))
+print(test.KeyIndexSorting())
+print()
+
+
+# Task 2 on Hashing
+
+
+def hash_function(array):
+    lst1 = [0] * len(array)
+    value = ['A', 'E', 'I', 'O', 'U']
+    for idx_value in array:
+        string_number = 0
+        temp = 0
+        for idx_str in idx_value:
+            if idx_str not in value:
+                if ord(idx_str) < 48 or ord(idx_str) > 57:
+                    string_number += 1
+                elif 48 <= ord(idx_str) <= 57:
+                    temp += int(idx_str)
+        val = (string_number * 24 + temp) % 9
+        if lst1[val] == 0:
+            lst1[val] = idx_value
+        else:
+            count = 1
+            while count > 0:
+                if lst1[(val + count) % len(lst1)] == 0:
+                    lst1[(val + count) % len(lst1)] = idx_value
+                    break
+                else:
+                    count += 1
+    return lst1
+
+
+arr = ['ABC124', 'DEF456', 'SHABBY221', 'ABDULLAH101112', 'ST1E89B8A32', 'UVWXY81920', 'KHUFU45654', 'WEDDER85274',
+       'EVANS82']
+print(hash_function(arr))

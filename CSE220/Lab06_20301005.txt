@@ -1,0 +1,233 @@
+# NAME : Shabab Abdullah
+# STUDENT ID : 20301005
+# SECTION : 04
+# CSE220 LAB ASSIGNMENT 06
+
+# Task 01(a)
+
+def recursion(num):
+    if num == 0 or num == 1:
+        return 1
+    else:
+        return num * recursion(num - 1)
+
+
+powerN = recursion(5)
+print(powerN)
+
+
+# Task 01(b)
+def recursive_fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return recursive_fibonacci(n - 1) + recursive_fibonacci(n - 2)
+
+
+x = recursive_fibonacci(3)
+print(x)
+
+
+# Task 01(c)
+def recursive_sum_print(n):
+    if len(n) > 1:
+        data = n[0]
+    else:
+        return n[0]
+    n = n[1:]
+    return str(data) + "," + str(recursive_sum_print(n))
+
+
+x = [1, 2, 3, 4, 5]
+print("List =", recursive_sum_print(x))
+
+
+# Task 01(d)
+
+def powerN(base, power):
+    if power == 0:
+        return 1
+    temp = powerN(base, power // 2)
+    if power % 2 == 0:
+        return temp * temp
+    else:
+        return temp * temp * base
+
+
+x = powerN(3, 2)
+print(x)
+
+
+# Task 02(a)
+def dec_to_binary(number):
+    if number == 0:
+        return " "
+    else:
+        bin = (number % 2)
+        return str(dec_to_binary(int(number // 2))) + str(bin)
+
+
+print(dec_to_binary(5))
+
+
+# Task 02 (b)
+class Node:
+    def __init__(self, e, n):
+        self.element = e
+        self.next = n
+
+
+class MyList:
+    def __init__(self, a):
+        self.head = None
+        tail = None
+
+        for i in a:
+            dummy = Node(i, None)
+            if self.head is None:
+                self.head = dummy
+                tail = dummy
+
+
+list1 = [10, 20, 30, 40, 50]
+list2 = MyList(list1)
+
+
+def adder(list2):
+    if list2 is None:
+        return 0
+    else:
+        return list2.element + adder(list2.next)
+
+
+print(adder(list2.head))
+
+
+# Task 02 (c)
+
+def reverse_linked_list(list2):
+    if list2 is None:
+        return
+    else:
+        reverse_linked_list(list2.next)
+        print(list2.element)
+
+
+reverse_linked_list(list2.head)
+
+
+# Task 03
+
+def hocBuilder(height):
+    if height == 0:
+        return 0
+    elif height == 1:
+        return 8
+    else:
+        return hocBuilder(height - 1) + 5
+
+
+print(hocBuilder(3))
+
+
+# Task 04 (a)
+
+def num(m, i):
+    if i == m:
+        return
+    elif m == 0:
+        return
+    print(i, end=' ')
+    num(m, i + 1)
+
+
+def line(n, r=0):
+    if n == 0:
+        return
+    i = 1
+    num(r + 2, 1)
+    print()
+    line(n - 1, r + 1)
+
+
+x = int(input("Input:"))
+line(x)
+
+
+# Task 04 (b)
+
+def space(k, j):
+    if j == k:
+        return ''
+    elif k == 0:
+        return
+    print(' ', end=' ')
+    space(k, j + 1)
+
+
+def num(m, i):
+    if i == m:
+        return
+    elif m == 0:
+        return
+    print(i, end=' ')
+    num(m, i + 1)
+
+
+def line(n, r=0):
+    if n != 0:
+        i = 1
+        space(n - i + 1, 1)
+        num(r + 2, 1)
+        print()
+        line(n - 1, r + 1)
+
+
+x = int(input("Input:"))
+line(x)
+
+
+# Task 05
+
+class FinalQ:
+    def print(self, arr, idx):
+
+        if len(arr) <= idx:
+            pass
+        else:
+            profit = self.calcProfit(arr[idx])
+
+            # TO DO ============
+            profit = "{:.1f}".format(profit)
+            print(str(idx + 1), ".  Investment: ", arr[idx], ";  Profit: ", profit)
+
+            self.print(arr, idx + 1)
+
+        return
+
+    def calcProfit(self, investment):
+
+        # TO DO ============
+
+        if investment > 25000:
+            if investment <= 100000:
+
+                if investment >= 50000:
+                    return 1125 + self.calcProfit(investment - 25000)
+
+                return 4.5 + self.calcProfit(investment - 100)
+
+            if investment < 200000:
+                return 8 + self.calcProfit(investment - 100)
+
+            return 8000 + self.calcProfit(investment - 100000)
+
+        return 0
+
+
+# Tester
+array = [25000, 100000, 250000, 350000]
+f = FinalQ()
+f.print(array, 0)
