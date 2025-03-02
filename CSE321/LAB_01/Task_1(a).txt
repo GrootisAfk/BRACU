@@ -1,0 +1,63 @@
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ touch 20301005_1.txt 20301005_2.txt 20301005_3.txt 20301005_4.txt
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ mkdir Shabab_1 Shabab_2
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ mv 20301005_1.txt 20301005_2.txt 20301005_3.txt Shabab1/
+mv: target 'Shabab1/': No such file or directory
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ mv 20301005_1.txt 20301005_2.txt 20301005_3.txt Shabab_1/
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cp Shabab1/20301005_1.txt Shabab1/20301005_2.txt Shabab_2/
+cp: cannot stat 'Shabab1/20301005_1.txt': No such file or directory
+cp: cannot stat 'Shabab1/20301005_2.txt': No such file or directory
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cp Shabab1/20301005_1.txt Shabab1/20301005_2.txt Shabab_2/
+cp: cannot stat 'Shabab1/20301005_1.txt': No such file or directory
+cp: cannot stat 'Shabab1/20301005_2.txt': No such file or directory
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cp Shabab1/20301005_1.txt Shabab1/20301005_2.txt Shabab_2/
+cp: cannot stat 'Shabab1/20301005_1.txt': No such file or directory
+cp: cannot stat 'Shabab1/20301005_2.txt': No such file or directory
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cp Shabab1/20301005_1.txt Shabab_1/20301005_2.txt Shabab_2/
+cp: cannot stat 'Shabab1/20301005_1.txt': No such file or directory
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cp Shabab_1/20301005_1.txt Shabab_1/20301005_2.txt Shabab_2/
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ mkdir Shabab3
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cp Shabab_1 Shabab3/
+cp: -r not specified; omitting directory 'Shabab_1'
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ 
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cp -r Shabab_1 Shabab3/
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cd Shabab3
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321/Shabab3$ ls -l
+total 4
+drwxrwxr-x 2 shabab-abdullah shabab-abdullah 4096 Jul  7 21:35 Shabab_1
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321/Shabab3$ chmod -R 755 Shabab_1
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321/Shabab3$ cd ..
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ ls -l
+total 12
+-rw-rw-r-- 1 shabab-abdullah shabab-abdullah    0 Jul  7 21:28 20301005_4.txt
+drwxrwxr-x 2 shabab-abdullah shabab-abdullah 4096 Jul  7 21:29 Shabab_1
+drwxrwxr-x 2 shabab-abdullah shabab-abdullah 4096 Jul  7 21:34 Shabab_2
+drwxrwxr-x 3 shabab-abdullah shabab-abdullah 4096 Jul  7 21:35 Shabab3
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ sudo mv Shabab3/
+[sudo] password for shabab-abdullah: 
+mv: missing destination file operand after 'Shabab3/'
+Try 'mv --help' for more information.
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ cd ..
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop$ sudo mv Shabab3/
+mv: missing destination file operand after 'Shabab3/'
+Try 'mv --help' for more information.
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop$ ls
+CSE321
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop$ cd CSE321
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ ls
+20301005_4.txt  Shabab_1  Shabab_2  Shabab3
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ rm -r 20301005_4.txt Shabab1 Shabab2
+rm: cannot remove 'Shabab1': No such file or directory
+rm: cannot remove 'Shabab2': No such file or directory
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ sudo mv Shabab3 /
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ rm -r 20301005_4.txt Shabab1 Shabab2
+rm: cannot remove '20301005_4.txt': No such file or directory
+rm: cannot remove 'Shabab1': No such file or directory
+rm: cannot remove 'Shabab2': No such file or directory
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ rm -r 20301005_4.txt Shabab1 Shabab2
+rm: cannot remove '20301005_4.txt': No such file or directory
+rm: cannot remove 'Shabab1': No such file or directory
+rm: cannot remove 'Shabab2': No such file or directory
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ ls
+Shabab_1  Shabab_2
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ rm -r  Shabab_1 Shabab_2
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ 

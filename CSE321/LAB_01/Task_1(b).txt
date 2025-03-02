@@ -1,0 +1,14 @@
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ echo "Course ID: CSE321, Course Name: Operating Systems, Section: 7" > course.txt
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ echo "Course ID: CSE490, Course Name: Cyber Security, Section: 1" >> course.txt
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ echo "Course ID: CSE470, Course Name: Software Engineering, Section: 1" >> course.txt
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ echo "Course ID: ECO102, Course Name: Introduction to Macroeconomics, Section: 5" >> course.txt
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ ls
+course.txt
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ grep -c "CSE" course.txt
+3
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ grep -n 'CSE' course.txt
+1:Course ID: CSE321, Course Name: Operating Systems, Section: 7
+2:Course ID: CSE490, Course Name: Cyber Security, Section: 1
+3:Course ID: CSE470, Course Name: Software Engineering, Section: 1
+shabab-abdullah@shabab-abdullah-VirtualBox:~/Desktop/CSE321$ 
+
